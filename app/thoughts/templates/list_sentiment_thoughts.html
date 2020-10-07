@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card text-white bg-dark mb-3">
+  <div class="card-header"></div>
+  <div class="card-body">
+      <form method="POST" action="{% url 'new-thought' %}" >
+        {% csrf_token %}
+        <textarea class="form-control" placeholder="Any thoughts, {{username}}?" maxlength="250" name="text"></textarea>
+        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Share">
+    </form>
+  </div>
+</div>
+
+{% for thought in thoughts %}
+<div class="card border-dark mt-2">
+  <div class="card-body">
+    <h6 class="card-subtitle mb-2">
+      {{thought.username}}
+      <small class="text-muted">{{thought.timestamp}}</small>
+    </h6>
+    {% if thought.sentiment == 1 %}
+    <p class="card-text" style="background-color:green;">{{thought.text}}</p>
+    {% elif thought.sentiment == 0 %}
+    <p class="card-text" style="background-color:coral;">{{thought.text}}</p>
+    {% else %}
+    <p class="card-text">{{thought.text}}</p>
+    {% endif %}
+  </div>
+</div>
+  {% endfor %}
+{% endblock %}
