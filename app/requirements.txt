@@ -3,7 +3,4 @@ gunicorn==20.0.4
 psycopg2-binary==2.8.5
 cffi
 bcrypt
-# numpy==1.16.1 # or numpy==1.16.0
-# Cython
-# scipy==1.2.1
-# scikit-learn[alldeps]
+sklearn
